@@ -1,0 +1,94 @@
+{% extends "base" %}
+
+{% block body %}
+
+  <div class="container">
+
+    <header class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <a href="/" class="btn-floating btn-large waves-effect waves-light blue lighten-3 tooltipped" data-position="bottom" data-tooltip="Retour en page d'accueil">
+              <i class="material-icons">
+                arrow_back
+              </i>
+            </a>
+          </div>
+        </form>
+      </header>
+
+      <form method="post" class="row">
+
+        <input type="hidden" id="tags" name="tags" value="{% for tag in resultat.tags %}{{ tag ~ " " }}{% endfor %}">
+
+          <div id="card-{{ resultat.tuto_id }}" class="card-container tutoriel col s12">
+            <div class="card full-size">
+              <div class="card-image waves-effect waves-block waves-light">
+                <div class="activator">
+                  <div class="resultat_content indigo grey-text text-lighten-5 input-field">
+                    <textarea name="content" id="content-textarea" class="materialize-textarea">
+                      {% for line in resultat.content %}
+                        {{ line }}
+                        {% endfor %}
+                      </textarea>
+                      <label for="content-textarea">
+                        Contenu du tutoriel
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-content">
+
+                  <div class="input-field card-title grey-text text-darken-4">
+                    <input name="title" id="title-input" type="text" class="validate" value="{{ resultat.title }}">
+                      <label for="title-input">
+                        Titre du tutoriel
+                      </label>
+                      <i class="material-icons prefix suffix">
+                        search
+                      </i>
+                    </div>
+
+                    <p class="tags-container row">
+                      <div class="chips focus input-field">
+                        <input data-chips="{% for tag in resultat.tags %}{{ tag ~ " " }}{% endfor %}" class="tags-input"></div>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fixed-action-btn">
+                  <button type="submit" class="btn-floating btn-large waves-effect waves-light green tooltipped" data-position="top" data-tooltip="Enregistrer">
+                    <i class="material-icons">
+                      check
+                    </i>
+                  </button>
+                </div>
+
+              </form>
+            <!-- row -->
+            </div>
+            <!-- container -->
+
+            <div id="confirm-suppression-{{ resultat.tuto_id }}" class="modal">
+              <div class="modal-content">
+                <h4>
+                  Confirmation
+                </h4>
+                <p>
+                  Le tutoriel va etre
+                  <b>
+                    définitivement
+                  </b>
+                  supprimé. Etes-vous sûr de vouloir continuer?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <a href="/supprimer/{{ resultat.tuto_id }}" class="confirm-delete modal-close waves-effect waves-green btn-flat">
+                  Je confirme
+                </a>
+              </div>
+            </div>
+
+          {% endblock %}
+          

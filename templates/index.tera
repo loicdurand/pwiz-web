@@ -1,0 +1,122 @@
+{% extends "base" %}
+
+{% block body %}
+
+  <div class="container">
+
+    <header class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="tutoriel-search" type="text" class="validate">
+              <label for="tutoriel-search">
+                Rechercher un tutoriel
+              </label>
+              <i class="material-icons prefix suffix">
+                search
+              </i>
+            </div>
+          </div>
+        </form>
+      </header>
+
+      <div class="row">
+
+        {% for resultat in resultats %}
+
+          <div id="card-{{ resultat.tuto_id }}" class="card-container tutoriel col s4 m3 l3" data-tags="{% for tag in resultat.tags %}{{ tag | lower }} {% endfor %}">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light link" data-href="/afficher/{{ resultat.tuto_id }}">
+                <div class="activator">
+                  <p class="resultat_content indigo grey-text text-lighten-5">
+                    {% for line in resultat.content %}
+                      {{ line }}
+                      <br>
+                      {% endfor %}
+                    </p>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">
+                    {{ resultat.title }}
+                  </span>
+                  <p class="tags-container">
+                    {% for tag in resultat.tags %}
+                      <span class="tag teal white-text">
+                        {{ tag }}
+                      </span>
+                    {% endfor %}
+                  </p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">
+                    {{ resultat.title }}
+                    <i class="material-icons right">
+                      close
+                    </i>
+                  </span>
+                  <p>
+                    Que souhaitez-vous faire?
+                    <ul>
+                      <li>
+                        <a href="/afficher/{{ resultat.tuto_id }}">
+                          Afficher ce tutoriel
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/modifier/{{ resultat.tuto_id }}">
+                          Modifier le tutoriel
+                        </a>
+                      </li>
+                      <li>
+                        <a data-target="confirm-suppression-{{ resultat.tuto_id }}" class="modal-trigger">
+                          Supprimer le tutoriel
+                        </a>
+                      </li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+          <!-- for resultat in resultats -->
+          <div class="card-container col s4 m3 l3">
+            <div class="card btn-container">
+              <a href="/creer" class="btn-floating btn-large waves-effect waves-light blue lighten-3 tooltipped" data-position="top" data-tooltip="Créer un tutoriel">
+                <i class="material-icons">
+                  add
+                </i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      <!-- row -->
+      </div>
+      <!-- container -->
+
+      {% for resultat in resultats %}
+        <div id="confirm-suppression-{{ resultat.tuto_id }}" class="modal">
+          <div class="modal-content">
+            <h4>
+              Confirmation
+            </h4>
+            <p>
+              Le tutoriel va etre
+              <b>
+                définitivement
+              </b>
+              supprimé. Etes-vous sûr de vouloir continuer?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a href="/supprimer/{{ resultat.tuto_id }}" class="confirm-delete modal-close waves-effect waves-green btn-flat">
+              Je confirme
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+
+    {% endblock %}
+    

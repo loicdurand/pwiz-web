@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "cargo": "cargo watch -w src -x run"
+  },
+  "dependencies": {
+    "materialize-css": "^1.0.0-rc.2"
+  }
+}

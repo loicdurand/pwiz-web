@@ -1,0 +1,135 @@
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Material Icons'), local('MaterialIcons-Regular'), url('/public/fonts/material-icons.woff2') format('woff2');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: url(/public/images/mur.png) no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100vh;
+}
+
+body .container {
+  width: 70%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, .15);
+}
+
+.modal-trigger {
+  cursor: pointer;
+}
+
+/* HEADER */
+
+header {
+  padding: 1rem 0 0 0;
+  margin: 0;
+}
+
+.material-icons.prefix.suffix {
+  right: 0;
+}
+
+/* CARDS */
+
+.row .card-container {
+  padding: 6px;
+}
+
+.row .card-container .card {
+  min-height: 26rem;
+  max-width: 26rem;
+  height: 26rem;
+}
+
+.row .card .card-content .card-title {
+  min-height: 4rem;
+}
+
+.row .card .card-content .card-title input {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.row .card .card-image .activator .resultat_content {
+  margin: 0;
+  text-align: left;
+  text-indent: 0;
+  padding: 6px;
+  min-height: 10rem;
+  border-radius: 3px 3px 0 0;
+  overflow-y: scroll;
+  max-height: 10rem;
+}
+
+.row .card .card-image .activator .resultat_content textarea {
+  color: #fff;
+  border: none;
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, .5);
+  height: 34rem;
+}
+
+.row .card .card-image .activator .resultat_content textarea+ label{
+  left: 1rem;
+}
+
+/* Affichage "full-size" */
+.row .card-container .card.full-size {
+  height: auto;
+  max-width: 100%;
+}
+
+.row .card-container .card.full-size .card-image .activator .resultat_content {
+  min-height: 35rem;
+  max-height: 35rem;
+}
+
+/* fin affichage "full-size" */
+
+.row .card-container .card .tags-container {
+  overflow: hidden;
+  max-height: 6rem;
+}
+
+.row .card-container .card .tags-container .tag {
+  border-radius: 3px;
+  margin-right: 3px;
+  padding: 1px 3px;
+  font-size: .8rem;
+  text-align: center;
+}
+
+.row .btn-container {
+  position: relative;
+  box-shadow: unset;
+  background: transparent;
+}
+
+/* Bouton "ajouter" */
+.row .btn-container .btn-floating {
+  position: absolute;
+  top: 11rem;
+  margin-left: 32%;
+  margin-right: auto;
+}
+
+/* fin bouton "ajouter" */

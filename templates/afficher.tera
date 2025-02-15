@@ -1,0 +1,100 @@
+{% extends "base" %}
+
+{% block body %}
+
+  <div class="container">
+
+    <header class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <a href="/" class="btn-floating btn-large waves-effect waves-light blue lighten-3 tooltipped" data-position="bottom" data-tooltip="Retour en page d'accueil">
+              <i class="material-icons">
+                arrow_back
+              </i>
+            </a>
+
+          </div>
+        </form>
+      </header>
+
+      <div class="row">
+
+        <div id="card-{{ resultat.tuto_id }}" class="card-container tutoriel col s12">
+          <div class="card full-size">
+            <div class="card-image waves-effect waves-block waves-light">
+              <div class="activator">
+                <p class="resultat_content indigo grey-text text-lighten-5">
+                  {% for line in resultat.content %}
+                    {{ line }}
+                    <br>
+                    {% endfor %}
+                  </p>
+                </div>
+              </div>
+              <div class="card-content">
+                <span class="card-title grey-text text-darken-4">
+                  {{ resultat.title }}
+                </span>
+                <p class="tags-container">
+                  {% for tag in resultat.tags %}
+                    <span class="tag teal white-text">
+                      {{ tag }}
+                    </span>
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fixed-action-btn">
+            <a class="btn-floating btn-large blue">
+              <i class="large material-icons">
+                menu
+              </i>
+            </a>
+            <ul>
+              <li>
+                <a data-target="confirm-suppression-{{ resultat.tuto_id }}" class="btn-floating red modal-trigger">
+                  <i class="material-icons">
+                    delete
+                  </i>
+                </a>
+              </li>
+              <li>
+                <a href="/modifier/{{ resultat.tuto_id }}" class="btn-floating blue">
+                  <i class="material-icons">
+                    edit
+                  </i>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      <!-- row -->
+      </div>
+      <!-- container -->
+
+      <div id="confirm-suppression-{{ resultat.tuto_id }}" class="modal">
+        <div class="modal-content">
+          <h4>
+            Confirmation
+          </h4>
+          <p>
+            Le tutoriel va etre
+            <b>
+              définitivement
+            </b>
+            supprimé. Etes-vous sûr de vouloir continuer?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="/supprimer/{{ resultat.tuto_id }}" class="confirm-delete modal-close waves-effect waves-green btn-flat">
+            Je confirme
+          </a>
+        </div>
+      </div>
+
+    {% endblock %}
+    
